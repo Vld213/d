@@ -129,6 +129,17 @@ class OtherCmds(commands.Cog):
 'Перспективы не очень хорошие :no_entry:',
 'Весьма сомнительно :x:']
         await ctx.send(random.choice(answers))
+        
+    @commands.command()
+    @commands.cooldown(1, 3, commands.BucketType.guild)
+    @commands.check(messages.check_perms)
+    async def ben(self, ctx, *, question):
+        ben = ['Ho-ho-ho', 'Ho-ho-ho, no', 'Ho-ho-ho, yes', 'Yes', 'No']
+        embed = discord.Embed()
+        embed.add_field(name="Вопрос: ", value=f"{question}", inline=False)
+        embed.add_field(name="Ответ: ", value=f"{random.choice(ben)}", inline = False)
+        embed.set_image(url = "https://tenor.com/view/ben-gif-25012257")
+        await ctx.send(embed=embed
 
     @commands.command()
     @commands.cooldown(1, 3, commands.BucketType.guild)
