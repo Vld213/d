@@ -10,20 +10,13 @@ class Color:
     success = 0x44E923
 
 class Auth:
-    discord_auth = {
-        "debug":"MTAxNTMyMTgwMTEzMzQxMjQzNA.GhvN5W.7EsGM13431lLYSl46Kd7jtqygfgBoT6c1jO3E8",
-        "release": "MTAxNTMyMTgwMTEzMzQxMjQzNA.GhvN5W.7EsGM13431lLYSl46Kd7jtqygfgBoT6c1jO3E8"
-    }
-    mongo_auth = {
-        "url":"",
-        "username":"",
-        "auth":{
-            "debug":"",
-            "release": ""
-        }
-    }
-    qiwi_auth = ""
+  {
+mongo = pymongo.MongoClient("mongodb+srv://Vlad:Belluchi2023@cluster0.pbknkxp.mongodb.net/test")
 
+        "debug":"MTA3NzI5MjEwNzIyOTgzOTQ2Mw.GKu38_.aTg-nn5G90T-AUSEMwBoFZsDZcYRIi41QPCkuY",
+        "release": "MTA3NzI5MjEwNzIyOTgzOTQ2Mw.GKu38_.aTg-nn5G90T-AUSEMwBoFZsDZcYRIi41QPCkuY"
+  }
+  
 class Other:
     shard_count = 1
     slash = None
