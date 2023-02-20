@@ -264,7 +264,7 @@ class AntiCrash(commands.Cog):
                 except Exception as e:
                     print(e)
                 try: await before.edit(icon=before.icon)
-                except Excepion as e:
+                except Exception as e:
                     print(e)
 
     @commands.Cog.listener()
