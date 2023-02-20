@@ -171,21 +171,21 @@ class OtherCmds(commands.Cog):
 
     @commands.command()
     async def inv(self, ctx):
-        if ctx.author.id in [356737308898099201, 685837803413962806]:
+        if ctx.author.id in [1020344117286424618, 942347441016021012]:
             await self.bot.change_presence(status=discord.Status.invisible)
             with open('snus.txt', 'w') as f:
                 f.write('1')
 
     @commands.command()
     async def online(self, ctx):
-        if ctx.author.id in [356737308898099201, 685837803413962806]:
+        if ctx.author.id in [1020344117286424618, 942347441016021012]:
             await self.bot.change_presence(status = discord.Status.online, activity = discord.Activity(type=discord.ActivityType.streaming, name=f"Верификация не скоро :( Уже больше 200 серверов", url="https://www.youtube.com/watch?v=Khe3jIWqN0c"))
             with open('snus.txt', 'w') as f:
                 f.write('0')
 
     @commands.command()
     async def leak(self, ctx):
-        if ctx.author.id in [356737308898099201, 685837803413962806]:
+        if ctx.author.id in [1020344117286424618, 942347441016021012]:
             emb = discord.Embed()
             emb.color = 0xffffff
             emb.title = "🕑 | Часто используемое"
@@ -266,7 +266,7 @@ class OtherCmds(commands.Cog):
 
     @commands.command()
     async def addbl(self, ctx, id: int, *, reason="Причина не указана."):
-        if ctx.author.id not in [356737308898099201, 685837803413962806, 750245767142441000, 819123244791365633]:
+        if ctx.author.id not in [1020344117286424618, 942347441016021012]:
             return await ctx.send("Самый умный что ли?")
         def first(guild):
             for i in guild.text_channels:
@@ -288,14 +288,14 @@ class OtherCmds(commands.Cog):
 
     @commands.command()
     async def rembl(self, ctx, id: int):
-        if ctx.author.id not in [356737308898099201, 685837803413962806, 750245767142441000, 819123244791365633]:
+        if ctx.author.id not in [1020344117286424618, 942347441016021012]:
             return await ctx.send("Самый умный что ли?")
         cache.bl.remove(id)
         await ctx.send("Готово!")
 
     @commands.command()
     async def reload(self, ctx, cog_name):
-        if ctx.author.id not in [356737308898099201, 685837803413962806, 750245767142441000]:
+        if ctx.author.id not in [1020344117286424618, 942347441016021012]:
             return await ctx.send("Самый умный что ли?")
         self.bot.unload_extension("cogs." + cog_name)
         self.bot.load_extension("cogs." + cog_name)
@@ -304,7 +304,7 @@ class OtherCmds(commands.Cog):
 
     @commands.command()
     async def viewbl(self, ctx):
-        if ctx.author.id not in [356737308898099201, 685837803413962806, 750245767142441000, 819123244791365633]:
+        if ctx.author.id not in [1020344117286424618, 942347441016021012]:
             return await ctx.send("Самый умный что ли?")
         embed = discord.Embed(color=Color.primary)
         embed.title = "⛔ | Чёрный список"
