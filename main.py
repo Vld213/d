@@ -39,7 +39,7 @@ if release:
 else:
     token = Auth.discord_auth["debug"]
 db = mongo.cp
-default_prefixes = ['Hi.', 'hI.', 'hi.', 'HI.']
+default_prefixes = ['r.', 'R.']
 
 begin = time.time()
 
