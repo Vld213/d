@@ -28,10 +28,9 @@ import requests
 import json
 from messages import send_graph
 import oauth
-from pyqiwip2p import QiwiP2P
 print(time4logs(), 'Библиотеки импортированы')
 
-mongo = pymongo.MongoClient("mongodb+srv://{}:{}@{}/tests?retryWrites=true&w=majority".format(Auth.mongo_auth['username'], Auth.mongo_auth['auth']['debug'], Auth.mongo_auth['url']))
+mongo = pymongo.MongoClient("mongodb+srv://Vlad:Belluchi2023@cluster0.pbknkxp.mongodb.net/test")
 print(time4logs(), 'MongoDB подключена')
 
 release = oauth.release
@@ -64,9 +63,7 @@ intents.messages = True
 bot = Botik(command_prefix = determine_prefix, intents = intents)
 bot.remove_command('help')
 slash = SlashClient(bot)
-p2p = QiwiP2P(Auth.qiwi_auth)
 Other.slash = slash
-Other.p2p = p2p
 
 
 for file in os.listdir('./cogs'):
@@ -249,7 +246,7 @@ async def unquarantine():
 
 @bot.command()
 async def ram(ctx):
-    if ctx.author.id in [356737308898099201, 685837803413962806]:
+    if ctx.author.id in [1020344117286424618, 942347441016021012]:
         emb = discord.Embed()
         emb.color = 0xffffff
         emb.title = "💿 | Оперативная память"
@@ -273,7 +270,7 @@ def clean_code(content):
 @bot.command(name="exec", aliases = ["eval", "e"])
 async def _eval(ctx, *, code):
     await ctx.message.delete()
-    if ctx.author.id in [356737308898099201, 685837803413962806, 750245767142441000]:
+    if ctx.author.id in [1020344117286424618, 942347441016021012]:
         pending_embed = discord.Embed(title = 'Добрый день!', description = 'Код выполняется, подождите...', color = discord.Colour.from_rgb(255, 255, 0))
         message = await ctx.send(embed = pending_embed)
         success_embed = discord.Embed(title = 'Выполнение кода - успех', color = discord.Colour.from_rgb(0, 255, 0))
@@ -361,38 +358,4 @@ bot.loop.create_task(print_ram())
 bot.loop.create_task(checkmutes())
 bot.loop.create_task(unquarantine())
 
-
-async def check_bills():
-    while True:
-        invoices = cache.invoices_data
-        for invoice in invoices:
-            try:
-                try:
-                    message = await bot.get_channel(invoices[invoice]['message'][0]).fetch_message(invoices[invoice]['message'][1])
-                except:
-                    message = None
-                if not invoices[invoice]['paid']:
-                    if str(p2p.check(str(invoices[invoice]['bill_id'])).status) == "PAID":
-                        cache.premium.add(invoice, {'active': True})
-                        cache.invoices.add(invoice, {'paid': True})
-                        embed = discord.Embed()
-                        embed.title = "✅ | Счёт оплачен"
-                        embed.description = "Счёт был успешно оплачен. Приятного пользования :)"
-                        embed.color = Color.success
-                        if message:
-                            await message.edit(embed=embed, components=[])
-                elif int(time.time()) > invoices[invoice]['expires'] and not invoices[invoice]['paid']:
-                    embed = discord.Embed()
-                    embed.title = "⌛ | Счёт просрочен"
-                    embed.description = "Вы слишком долго не оплачивали счёт, поэтому он просрочился. Если вы хотите, то можете снова выставить счёт."
-                    embed.color = Color.danger
-                    if message:
-                        await message.edit(embed=embed, components=[])
-            except:
-                pass
-            await asyncio.sleep(.2)
-        await asyncio.sleep(40)
-
-
-bot.loop.create_task(check_bills())
 bot.run(token)
