@@ -77,11 +77,6 @@ class Cmd(commands.Cog):
                 value="`avatar` `backup` `discrim`",
                 inline=False
             )
-            embed.add_field(
-                name=f"Hi Plus",
-                value="`invoices` `plus`",
-                inline=False
-            )
             infoe = discord.Embed(color=Color.primary, title="ℹ | Список команд: Информация", description=f"""
 `{ctx.prefix}info` – информация о боте
 `{ctx.prefix}invite` – пригласить бота на свой сервер
@@ -149,10 +144,6 @@ class Cmd(commands.Cog):
 `{ctx.prefix}backup` – управление резервными копиями сервера
 `{ctx.prefix}discrim` – поиск участников с определённым Discord тегом
             """)
-            cpplus = discord.Embed(color=Color.primary, title="⭐ | Список команд: Управление подпиской HiProtect Plus", description=f"""
-`{ctx.prefix}invoices` – выставленные счета
-`{ctx.prefix}plus` – подробнее о подписке
-            """)
             selectmenu = SelectMenu(
                 custom_id="cmds",
                 placeholder="Выберите категорию",
@@ -164,8 +155,7 @@ class Cmd(commands.Cog):
                     SelectOption("Для владельца сервера", "Команды, доступные только владельцу сервера", emoji="👑"),
                     SelectOption("Настройка", "Команды для настройки бота", emoji="⚙"),
                     SelectOption("Роли за реакции", "Команды для ролей за реакции", emoji="🚩"),
-                    SelectOption("Прочее", "Прочие команды", emoji="💾"),
-                    SelectOption("Hi Plus", "Управление подпиской HiProtect Plus", emoji="⭐")
+                    SelectOption("Прочее", "Прочие команды", emoji="💾")
                 ]
             )
             button = ActionRow(
@@ -188,8 +178,7 @@ class Cmd(commands.Cog):
                     "Настройка": settingse,
                     "Прочее": othere,
                     "Роли за реакции": rre,
-                    "Администрация": admine,
-                    "Hi Plus": cpplus
+                    "Администрация": admine
                 }
                 await inter.create_response(type=6)
                 await msg.edit(embed=embeds[inter.select_menu.selected_options[0].label])
@@ -214,6 +203,7 @@ class Cmd(commands.Cog):
             if len(discord.utils.get(self.bot.commands, name=cmd).aliases):
                 embed.add_field(inline=False, name="Алиасы (синонимы)", value=">>> " + ", ".join([f"`{a}`" for a in discord.utils.get(self.bot.commands, name=cmd).aliases]))
             await ctx.send(embed=embed)
+            
     @commands.command()
     @commands.check(messages.check_perms)
     @commands.cooldown(1, 5, commands.BucketType.guild)
@@ -225,6 +215,7 @@ class Cmd(commands.Cog):
 [🌐 Сайт](https://hiprotect.tk)
         '''
         await ctx.send(embed=embed)
+        
     @commands.command(aliases=['serverinfo', 'server-info', 'server_info', 'si'])
     @commands.check(messages.check_perms)
     @commands.cooldown(1, 5, commands.BucketType.guild)
@@ -389,7 +380,7 @@ class Cmd(commands.Cog):
                 try:
                     prefix = cache.configs_data[message.guild.id]['prefix']
                 except:
-                    prefix = 'hi.'
+                    prefix = 'r.'
                 await message.channel.send(f'{message.author.mention}, мой префикс – `{prefix}`. Для просмотра списка команд введи `{prefix}help`.')
 
     @commands.command()
@@ -407,8 +398,6 @@ class Cmd(commands.Cog):
             value=f'''
 🛰 Средняя задержка бота: **{int(self.bot.latency * 1000)} мс**
 ⏳ Аптайм: **{word.hms(uptime2)}**
-🖥 Шардов: **{len(self.bot.shards)}**
-🆔 ID шарда этого сервера: **{ctx.guild.shard_id}**
 💬 Команд выполнено: **{cache.botstats_data[self.bot.user.id]["commands_completed"]}**
             '''
         )
@@ -456,17 +445,7 @@ class Cmd(commands.Cog):
     @commands.cooldown(1, 3, commands.BucketType.guild)
     async def ping(self, ctx):
         embed = discord.Embed(title="🏓 | Понг!", description=f'Средняя задержка: **{int(self.bot.latency * 1000)} мс**', color=Color.primary)
-        embed.add_field(inline=False, name="По шардам:", value=f'''
-Шард **0**: **{int(self.bot.get_shard(0).latency) * 1000}мс**
-Шард **1**: **None мс**
-Шард **2**: **None мс**
-Шард **3**: **None мс**
-Шард **4**: **None мс**
-Шард **5**: **None мс**
-Шард **6**: **None мс**
-Шард **7**: **None мс**
-        ''')
-        embed.set_footer(text=f'ID вашего шарда: {ctx.guild.shard_id}')
+        # embed.set_footer(text=f'ID вашего шарда: {ctx.guild.shard_id}')
         await ctx.send(embed=embed)
 
     @commands.Cog.listener()
