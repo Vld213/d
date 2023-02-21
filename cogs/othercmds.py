@@ -139,7 +139,7 @@ class OtherCmds(commands.Cog):
         embed.add_field(name="Вопрос: ", value=f"{question}", inline=False)
         embed.add_field(name="Ответ: ", value=f"{random.choice(ben)}", inline = False)
         embed.set_image(url = "https://tenor.com/view/ben-gif-25012257")
-        await ctx.send(embed=embed
+        await ctx.send(embed=embed)
 
     @commands.command()
     @commands.cooldown(1, 3, commands.BucketType.guild)
