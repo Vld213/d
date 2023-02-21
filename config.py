@@ -10,12 +10,11 @@ class Color:
     success = 0x44E923
 
 class Auth:
-  {
-mongo = pymongo.MongoClient("mongodb+srv://Vlad:Belluchi2023@cluster0.pbknkxp.mongodb.net/test")
-
+    discord_auth = {
         "debug":"MTA3NzI5MjEwNzIyOTgzOTQ2Mw.GKu38_.aTg-nn5G90T-AUSEMwBoFZsDZcYRIi41QPCkuY",
         "release": "MTA3NzI5MjEwNzIyOTgzOTQ2Mw.GKu38_.aTg-nn5G90T-AUSEMwBoFZsDZcYRIi41QPCkuY"
   }
+    mongo = "mongodb+srv://Vlad:Belluchi2023@cluster0.pbknkxp.mongodb.net/test"
   
 class Other:
     shard_count = 1
