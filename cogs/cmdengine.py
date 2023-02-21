@@ -428,7 +428,7 @@ class Cmd(commands.Cog):
 📆 Дата создания: **10 мая 2022 года**
 🐍 Версия Python: **3.10**
 📄 Версия: **1.4 (13 мая 2022 года)**
-👨‍💻 Разработчики: **Artem Bay#0547**, **самсунг ассистент#0205**
+👨‍💻 Разработчики: **Sanlex#9173**, **! paradox#2334**
             '''
         )
         embed.add_field(
@@ -447,7 +447,7 @@ class Cmd(commands.Cog):
 **Cymon#4380** - за оригинальный код бота и аватарку боту. Жалко краш протекта
             '''
         )
-        embed.set_footer(text="© 2022, Artem Bay | Все права защищены ботом HiProtect", icon_url=self.bot.get_user(356737308898099201).avatar_url)
+        embed.set_footer(text="© 2023, Sanlex and !  paradox | Все права защищены ботом Regular Defender", icon_url=self.bot.get_user(1077292107229839463).avatar_url)
         embed.set_thumbnail(url=self.bot.user.avatar_url)
         await ctx.send(embed=embed)
 
