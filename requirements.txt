@@ -1,0 +1,6 @@
+disnake
+asyncio
+aiohttp
+requests
+colorama
+memory_profiler
